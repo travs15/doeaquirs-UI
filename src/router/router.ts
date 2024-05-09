@@ -7,7 +7,7 @@ import LandingPage from '../views/LandingPage.vue';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'betme',
+    name: 'landing',
     component: LandingPage,
   },
   {

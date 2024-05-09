@@ -1,52 +1,45 @@
 <template>
   <div class="authFormContainer">
-    <h2>Bienvenido</h2>
+    <h2>Access the App</h2>
     <form>
-        <v-text-field
-            v-model="email"
-            label="E-mail"
-            hint="Ingresa tu correo electrónico"
-            required
-        ></v-text-field>
-        <v-text-field
-            v-model="password"
-            label="Password"
-            type="input"
-            hint="Ingresa tu contraseña"
-            required
-        ></v-text-field>
-      <!-- <button type="submit">Login</button> -->
-        <v-btn class="button" @click="login">
-            Ingresar
-        </v-btn>
-        <v-btn class="button" @click="register">
-            Registrarse
-        </v-btn>
+        <div class="mb-3">
+            <label for="emailInput" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+        </div>
+        <div class="mb-3">
+            <label for="passwordInput" class="form-label">Email address</label>
+            <input type="password" class="form-control" id="passwordInput" placeholder="name@example.com">
+        </div>
+        <div class="buttonsContainer">
+            <button type="button" class="btn btn-secondary" @click="login">
+                Log-In
+            </button type="button">
+            <button type="button" class="btn btn-secondary" @click="register">
+                Register
+            </button type="button">
+        </div>
     </form>
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-
-/** Global variables */
-const router = useRouter();
-
-const email = ref('');
-const password = ref('');
-
-const login = () => {
-  // Implement login functionality here
-  console.log('Logging in:', { email: email.value, password: password.value });
-  router.push('/home');
-};
-
-const register = () => {
-  // Implement login functionality here
-  router.push('/register');
-};
-
+<script>
+export default {
+    data() {
+        return {
+            email: '',
+            password: '',
+        }
+    },
+    methods: {
+        login() {
+            // TODO if its apporved go to the home page
+            this.$router.push('/home')
+        },
+        register(){
+            this.$router.push('/register')
+        },
+    }
+}
 </script>
 
 <style scoped>
@@ -73,5 +66,12 @@ form {
     margin: 0.5em;
     font-weight: 900;
     width: 40%;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
 </style>
