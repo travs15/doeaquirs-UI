@@ -1,6 +1,5 @@
-Copy code
 <template>
-    <div class="modal" v-if="show">
+    <div class="modal" v-if="showModal">
         <div class="modal-content">
             <div class="closeSection">
                 <button @click="closeModal">
@@ -14,17 +13,26 @@ Copy code
     </div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
-
-const emit = defineEmits(['closeModal'])
-
-const props = defineProps({
-    show: Boolean,
-});
-const closeModal = () => {
-    emit('closeModal');
-};
+<script>
+export default {
+    props: {
+        showModal: {
+            type: Boolean,
+            required: true
+        }
+    },
+    watch: {
+        showModal(oldVal, newVal) {
+            console.log('oldVal', oldVal);
+            console.log('newVal', newVal);
+        }
+    },
+    methods: {
+        closeModal() {
+            this.$emit('closeModal');
+        }
+    }
+}
 
 </script>
 
@@ -36,10 +44,10 @@ const closeModal = () => {
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
-    z-index: 5000;
+    z-index: 9999;
     background: darkcyan;
 }
 
@@ -48,6 +56,7 @@ const closeModal = () => {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    overflow-y: scroll;
 }
 
 .modal-inner {

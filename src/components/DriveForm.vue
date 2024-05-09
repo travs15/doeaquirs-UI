@@ -1,62 +1,114 @@
 <template>
-  <div class="registerFormContainer">
-    <h2>Registro</h2>
-    <form>
-        <div class="mb-3">
-            <label for="emailInput" class="form-label">Email Address</label>
-            <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
-        </div>
-        <div class="mb-3">
-            <label for="nameInput" class="form-label">Name</label>
-            <input type="text" class="form-control" id="nameInput" placeholder="">
-        </div>
-        <div class="mb-3">
-            <label for="lastNameInput" class="form-label">Last Name</label>
-            <input type="text" class="form-control" id="lastNameInput" placeholder="">
-        </div>
-        <div class="mb-3">
-            <label for="phoneInput" class="form-label">Phone Number</label>
-            <input type="tel" class="form-control" id="phoneInput" placeholder="555-5555555">
-        </div>
-        <div class="mb-3">
-            <label for="passwordInput" class="form-label">Password</label>
-            <input type="password" class="form-control" id="passwordInput" placeholder="******">
-        </div>
-        <div class="mb-3">
-            <label for="passwordConfirmInput" class="form-label">Password Confirmation</label>
-            <input type="password" class="form-control" id="passwordConfirmInput" placeholder="******">
-        </div>
-        <div class="buttonsContainer">
-            <button type="button" class="btn btn-secondary" @click="register">
-                Register
-            </button type="button">
-            <button type="button" class="btn btn-secondary" @click="login">
-                 Go to Log-In
-            </button type="button">
-        </div>
-    </form>
-  </div>
+    <div class="registerDriveFormContainer">
+        <h2>Register a Drive</h2>
+        <form>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <h3>Starting Point</h3>
+                        <div class="mb-5">
+                            <label for="startingState" class="form-label">State</label>
+                            <select v-model="startingPoint.startingState" class="form-control" id="startingState">
+                                <option disabled value="">Pick a State</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                        <div class="mb-5">
+                            <label for="startingAddress" class="form-label">Starting Address</label>
+                            <input type="text" class="form-control" id="startingAddress" placeholder="address" v-model="startingPoint.startingAddress">
+                        </div>
+                        <div class="mb-5">
+                            <label for="startingTime" class="form-label">Starting Time</label>
+                            <input type="date" class="form-control" id="startingTime" placeholder="" v-model="startingPoint.startingTime">
+                        </div>
+                        <div class="mb-5">
+                            <label for="startingNotes" class="form-label">Notes</label>
+                            <textarea class="form-control" id="startingNotes" rows="3" v-model="startingPoint.startingNotes"></textarea>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <h3>Ending Point</h3>
+                        <div class="mb-5">
+                            <label for="endingState" class="form-label">State</label>
+                            <select v-model="endingPoint.endingState" class="form-control" id="endingState">
+                                <option disabled value="">Pick a State</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                        <div class="mb-5">
+                            <label for="endingAddress" class="form-label">Ending Address</label>
+                            <input type="text" class="form-control" id="endingAddress" placeholder="address" v-model="endingPoint.endingAddress">
+                        </div>
+                        <div class="mb-5">
+                            <label for="endingTime" class="form-label">Ending Time</label>
+                            <input type="date" class="form-control" id="endingTime" placeholder="" v-model="endingPoint.endingTime">
+                        </div>
+                        <div class="mb-5">
+                            <label for="endingNotes" class="form-label">Notes</label>
+                            <textarea class="form-control" id="endingNotes" rows="3" v-model="endingPoint.endingNotes"></textarea>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="vehicletypeSelect" class="form-label">Vehicle Type</label>
+                <select v-model="vehicleType" class="form-control" id="vehicletypeSelect">
+                    <option disabled value="">Pick a type</option>
+                    <option value="car">Car</option>
+                    <option value="truck">Truck</option>
+                    <option value="plane">Plane</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="driveDescription" class="form-label">Description</label>
+                <textarea class="form-control" id="driveDescription" rows="3" v-model="driveDescription"></textarea>
+            </div>
+            <div class="buttonsContainer">
+                <button type="button" class="btn btn-secondary" @click="registerDrive">
+                    Register Drive!
+                </button type="button">
+                <button type="button" class="btn btn-danger" @click="emitCancel">
+                    Cancel
+                </button type="button">
+            </div>
+        </form>
+    </div>
 </template>
 
 <script>
 export default {
     data() {
         return {
-            email: '',
-            name: '',
-            lastName: '',
-            phoneNumber: '',
-            password: '',
-            passwordConfirm: '',
+            vehicleType: '',
+            driveDescription: '',
+            startingPoint: {
+                startingState: '',
+                startingAddress: '',
+                startingTime: '',
+                startingNotes: '',
+            },
+            endingPoint: {
+                endingState: '',
+                endingAddress: '',
+                endingTime: '',
+                endingNotes: '',
+            },
         }
     },
     methods: {
-        register() {
+        registerDrive() {
             // TODO Implement registration functionality here
             this.$router.push('/home');
         },
-        login() {
-            this.$router.push('/login')
+        emitCancel() {
+            // TODO post 
+            this.$emit('cancel-post');
         },
     }
 }
@@ -66,36 +118,22 @@ export default {
 
 <style scoped>
 /* Your light theme styles */
-.registerFormContainer {
+.registerDriveFormContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;   
+    height: 100%;
     width: 100%;
 }
 
 form {
     border: 0.5px solid #ccc;
     border-radius: .5em;
-    width: 30%;
+    width: 80%;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
     margin: 1em;
     padding: 1em;
-}
-
-.button {
-    margin: 0.5em;
-    font-weight: 900;
-    width: 40%;
-}
-
-.dateContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
 }
 
 .buttonsContainer {
