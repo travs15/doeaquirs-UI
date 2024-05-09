@@ -3,12 +3,12 @@
     <h2>Access the App</h2>
     <form>
         <div class="mb-3">
-            <label for="emailInput" class="form-label">Email address</label>
+            <label for="emailInput" class="form-label">Email Address</label>
             <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
         </div>
         <div class="mb-3">
-            <label for="passwordInput" class="form-label">Email address</label>
-            <input type="password" class="form-control" id="passwordInput" placeholder="name@example.com">
+            <label for="passwordInput" class="form-label">Password</label>
+            <input type="password" class="form-control" id="passwordInput" placeholder="******">
         </div>
         <div class="buttonsContainer">
             <button type="button" class="btn btn-secondary" @click="login">

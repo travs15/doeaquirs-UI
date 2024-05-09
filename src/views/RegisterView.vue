@@ -2,64 +2,65 @@
   <div class="registerFormContainer">
     <h2>Registro</h2>
     <form>
-        <v-text-field
-            v-model="email"
-            label="E-mail"
-            hint="Ingresa tu correo electrónico"
-            required
-        ></v-text-field>
-        <v-text-field
-            v-model="name"
-            label="Nombre"
-            hint="Ingresa tu nombre"
-            required
-        ></v-text-field>
-        <v-text-field
-            v-model="lastName"
-            label="Apellido"
-            hint="Ingresa tu apellido"
-            required
-        ></v-text-field>
-        <v-text-field
-            v-model="userName"
-            label="Nombre de usuario"
-            hint="Ingresa tu nombre de usuario"
-            required
-        ></v-text-field>
-        <v-text-field
-            v-model="password"
-            label="Password"
-            type="input"
-            hint="Ingresa tu contraseña"
-            required
-        ></v-text-field>
-        <div class="dateContainer">
-            <v-date-picker v-model="birthDate" color="primary" title="Día de nacimiento" header="Fecha" width="90%"></v-date-picker>
+        <div class="mb-3">
+            <label for="emailInput" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
         </div>
-        <v-btn class="button" @click="register">
-            Registrarse
-        </v-btn>
+        <div class="mb-3">
+            <label for="nameInput" class="form-label">Name</label>
+            <input type="text" class="form-control" id="nameInput" placeholder="">
+        </div>
+        <div class="mb-3">
+            <label for="lastNameInput" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastNameInput" placeholder="">
+        </div>
+        <div class="mb-3">
+            <label for="phoneInput" class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" id="phoneInput" placeholder="555-5555555">
+        </div>
+        <div class="mb-3">
+            <label for="passwordInput" class="form-label">Password</label>
+            <input type="password" class="form-control" id="passwordInput" placeholder="******">
+        </div>
+        <div class="mb-3">
+            <label for="passwordConfirmInput" class="form-label">Password Confirmation</label>
+            <input type="password" class="form-control" id="passwordConfirmInput" placeholder="******">
+        </div>
+        <div class="buttonsContainer">
+            <button type="button" class="btn btn-secondary" @click="register">
+                Register
+            </button type="button">
+            <button type="button" class="btn btn-secondary" @click="login">
+                 Go to Log-In
+            </button type="button">
+        </div>
     </form>
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+<script>
+export default {
+    data() {
+        return {
+            email: '',
+            name: '',
+            lastName: '',
+            phoneNumber: '',
+            password: '',
+            passwordConfirm: '',
+        }
+    },
+    methods: {
+        register() {
+            // TODO Implement registration functionality here
+            this.$router.push('/home');
+        },
+        login() {
+            this.$router.push('/login')
+        },
+    }
+}
 
-const router = useRouter();
-const email = ref('');
-const password = ref('');
-const name = ref('');
-const lastName = ref('');
-const userName = ref('');
-const birthDate = ref(new Date());
-
-const register = () => {
-    // Implement registration functionality here
-    console.log('Registering:', { email: email.value, password: password.value });
-    router.push('/home');
-};
 
 </script>
 
@@ -95,5 +96,12 @@ form {
     align-items: center;
     justify-content: center;
     width: 100%;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
 </style>
