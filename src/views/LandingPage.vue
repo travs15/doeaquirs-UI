@@ -17,10 +17,10 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Log-in</a>
+                            <a class="nav-link active" aria-current="page" href="#" @click="login">Log-in</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Register</a>
+                            <a class="nav-link" href="#" @click="register">Register</a>
                         </li>
                     </ul>
                     </div>
@@ -34,13 +34,13 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                            <button type="button" class="btn btn-primary"><h4>Post a Ride</h4></button>
+                            <button type="button" class="btn btn-primary" @click="handlePostRide"><h4>Post a Ride</h4></button>
                             <h4 class="aboutSection">
                                 This app will let you post your rides in order to transport food, clothes, supplies, donations... everything the people will need to help get us through this though time.
                             </h4>
                         </div>
                         <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                            <button type="button" class="btn btn-success"><h4>Post a Donation</h4></button>
+                            <button type="button" class="btn btn-success" @click="handlePostDonation"><h4>Post a Donation</h4></button>
                             <h4 class="aboutSection">
                                 If you have donations we could help you contacting the drive that will be available to carry the supplies that you donate and help the ones in need!
                             </h4>
@@ -78,28 +78,29 @@
     </div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import imgUrl from '../assets/vue.svg';
-
-/** Global variables */
-const router = useRouter();
-
-const email = ref('');
-const password = ref('');
-
-const login = () => {
-  // Implement login functionality here
-  console.log('Logging in:', { email: email.value, password: password.value });
-  router.push('/login');
-};
-
-const register = () => {
-  // Implement login functionality here
-  router.push('/register');
-};
-
+<script>
+export default {
+    data() {
+        return {
+            // email: '',
+            // password: '',
+        }
+    },
+    methods: {
+        login() {
+            this.$router.push('/login')
+        },
+        register(){
+            this.$router.push('/register')
+        },
+        handlePostRide() {
+            this.$router.push('/login')
+        },
+        handlePostDonation() {
+            this.$router.push('/login')
+        }
+    },
+}
 </script>
 
 <style scoped>
