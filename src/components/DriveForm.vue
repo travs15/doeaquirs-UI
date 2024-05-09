@@ -70,7 +70,7 @@
                 <textarea class="form-control" id="driveDescription" rows="3" v-model="driveDescription"></textarea>
             </div>
             <div class="buttonsContainer">
-                <button type="button" class="btn btn-secondary" @click="registerDrive">
+                <button type="button" class="btn btn-primary" @click="registerDrive">
                     Register Drive!
                 </button type="button">
                 <button type="button" class="btn btn-danger" @click="emitCancel">
