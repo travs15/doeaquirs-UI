@@ -1,19 +1,4 @@
 <template>
-    <Modal
-        v-bind:show-modal="displayDriveModal"
-        v-on:close-modal="closeDriveFormModal">
-        <DriveForm
-            v-on:drive-posted="handlePostDrive"
-            v-on:cancel-post="closeDriveFormModal"></DriveForm>
-    </Modal>
-    <Modal
-        v-bind:show-modal="displayDonationModal"
-        v-on:close-modal="closeDonnationFormModal">
-        <DonationForm
-            v-on:donation-posted="handlePostDonation"
-            v-on:cancel-post="closeDonnationFormModal">
-        </DonationForm>
-    </Modal>
     <div class="homeContainer">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -48,14 +33,14 @@
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-6" v-show="displayDonations">
                     <div class="sectionContainer">
-                        <button type="button" class="btn btn-outline-success" @click="openDonationFormModal">
+                        <button type="button" class="btn btn-outline-success" @click="openDonationForm">
                             <h3>Post Donation!</h3>
                         </button type="button">
                     </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-6" v-show="displayDrives">
                     <div class="sectionContainer">
-                        <button type="button" class="btn btn-outline-primary" @click="openDriveFormModal">
+                        <button type="button" class="btn btn-outline-primary" @click="openDriveForm">
                             <h3>Post Drive!</h3>
                         </button type="button">
                     </div>
@@ -75,39 +60,25 @@
 
 <script>
 import Modal from '../components/Modal.vue';
-import DriveForm from '../components/DriveForm.vue';
-import DonationForm from '../components/DonationForm.vue';
 
 export default {
     components: {
         Modal,
-        DriveForm,
-        DonationForm,
     },
     data() {
         return {
-            // email: '',
-            // password: '',
             isLoggedIn: false,
-            displayDriveModal: false,
-            displayDonationModal: false,
             displayDonations: true,
             displayDrives: true,
             displaySuppport: true,
         }
     },
     methods: {
-        openDriveFormModal() {
-            this.displayDriveModal = true;
+        openDriveForm() {
+            this.$router.push('/drive');
         },
-        closeDriveFormModal() {
-            this.displayDriveModal = false;
-        },
-        openDonationFormModal() {
-            this.displayDonationModal = true;
-        },
-        closeDonnationFormModal() {
-            this.displayDonationModal = false;
+        openDonationForm() {
+            this.$router.push('/donation');
         },
         handleSignOut() {
             this.$router.push('/login');
@@ -154,7 +125,7 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .buttonsContainer {

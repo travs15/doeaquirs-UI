@@ -3,6 +3,8 @@ import LogInView from '../views/LogInView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import HomeView from '../views/HomeView.vue';
 import LandingPage from '../views/LandingPage.vue';
+import DonationForm from '../views/DonationForm.vue';
+import DriveForm from '../views/DriveForm.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -24,6 +26,22 @@ const routes: Array<RouteRecordRaw> = [
     path: '/home',
     name: 'home',
     component: HomeView,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/donation',
+    name: 'donation',
+    component: DonationForm,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/drive',
+    name: 'drive',
+    component: DriveForm,
     meta: {
       requiresAuth: true
     }
