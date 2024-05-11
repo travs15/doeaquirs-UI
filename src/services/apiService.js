@@ -10,7 +10,7 @@ const client = axios.create({
     },
 });
 
-export default function useApiService() {
+export function useApiService() {
     function get(path, config = null) {
         return client.get(path, config);
     }
