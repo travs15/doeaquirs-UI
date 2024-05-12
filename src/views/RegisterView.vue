@@ -6,51 +6,101 @@
                 <div class="col-12 col-sm-10 col-md-6">
                     <form>
                         <div class="mb-3">
-                            <label for="emailInput" class="form-label">Email Address</label>
-                            <input v-model="newUser.email" type="email" class="form-control" id="emailInput"
-                                placeholder="name@example.com">
-                            <span class="invalid-feedback" v-show="v$.newUser.email.required.$response">required</span>
-                            <span class="invalid-feedback" v-show="v$.newUser.email.email.$response">not a valid email</span>
-                        </div>
-                        <div class="mb-3">
-                            <label for="nameInput" class="form-label">Name</label>
-                            <input v-model="newUser.name" type="text" class="form-control" id="nameInput"
-                                placeholder="">
-                            <div class="input-errors" v-for="error of v$.newUser.name.$errors" :key="error.$uid">
-                                <div class="invalid-feedback">{{ error.$message }}</div>
+                            <!-- <label for="emailInput" class="form-label">Email Address</label> -->
+                            <input
+                                type="email" class="form-control" id="emailInput"
+                                placeholder="name@example.com"
+                                v-model.trim="v$.newUser.email.$model"
+                            >
+                            <div class="validationMessages">
+                                <span
+                                    class="validationError"
+                                    v-show="v$.newUser.email.required.$invalid && v$.newUser.email.$dirty">
+                                    Enter an email
+                                </span>
+                                <span
+                                    class="validationError"
+                                    v-show="v$.newUser.email.email.$invalid && v$.newUser.email.$dirty">
+                                    Enter a valid email
+                                </span>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="lastNameInput" class="form-label">Last Name</label>
-                            <input v-model="newUser.lastName" type="text" class="form-control" id="lastNameInput"
-                                placeholder="">
-                            <div class="input-errors" v-for="error of v$.newUser.lastName.$errors" :key="error.$uid">
-                                <div class="invalid-feedback">{{ error.$message }}</div>
+                            <!-- <label for="nameInput" class="form-label">Name</label> -->
+                            <input
+                                type="text" class="form-control" id="nameInput"
+                                placeholder="Name"
+                                v-model.trim="v$.newUser.name.$model"
+                            >
+                            <div class="validationMessages">
+                                <span
+                                    class="validationError"
+                                    v-show="v$.newUser.name.required.$invalid && v$.newUser.name.$dirty">
+                                    Enter your name
+                                </span>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="phoneInput" class="form-label">Phone Number</label>
-                            <input v-model="newUser.phoneNumber" type="tel" class="form-control" id="phoneInput"
-                                placeholder="555-5555555">
-                            <div class="input-errors" v-for="error of v$.newUser.phoneNumber.$errors" :key="error.$uid">
-                                <div class="invalid-feedback">{{ error.$message }}</div>
+                            <!-- <label for="lastNameInput" class="form-label">Last Name</label> -->
+                            <input
+                                type="text" class="form-control" id="lastNameInput"
+                                placeholder="Last Name"
+                                v-model.trim="v$.newUser.lastName.$model"
+                            >
+                            <div class="validationMessages">
+                                <span class="validationError"
+                                    v-show="v$.newUser.lastName.required.$invalid && v$.newUser.lastName.$dirty">
+                                    Enter your last name
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <!-- <label for="phoneInput" class="form-label">Phone Number</label> -->
+                            <input type="tel" class="form-control" id="phoneInput"
+                                placeholder="555-5555555"
+                                v-model="v$.newUser.phoneNumber.$model"
+                            >
+                            <div class="validationMessages">
+                                <span class="validationError"
+                                    v-show="v$.newUser.phoneNumber.required.$invalid && v$.newUser.phoneNumber.$dirty">
+                                    Enter a phone number
+                                </span>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="passwordInput" class="form-label">Password</label>
-                            <input v-model="newUser.password" type="password" class="form-control" id="passwordInput"
-                                placeholder="******">
-                            <div class="input-errors" v-for="error of v$.newUser.password.$errors" :key="error.$uid">
-                                <div class="invalid-feedback">{{ error.$message }}</div>
+                            <input
+                                type="password" class="form-control" id="passwordInput"
+                                placeholder="******"
+                                v-model="v$.newUser.password.$model"
+                                >
+                            <div class="validationMessages">
+                                <span class="validationError"
+                                    v-show="v$.newUser.password.required.$invalid && v$.newUser.password.$dirty">
+                                    Enter a password
+                                </span>
+                                <span class="validationError"
+                                    v-show="v$.newUser.password.minLength.$invalid && v$.newUser.password.$dirty">
+                                    Enter a password with a minimum of 6 characters
+                                </span>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="passwordConfirmInput" class="form-label">Password Confirmation</label>
-                            <input v-model="newUser.passwordConfirm" type="password" class="form-control"
-                                id="passwordConfirmInput" placeholder="******">
-                            <div class="input-errors" v-for="error of v$.newUser.passwordConfirm.$errors"
-                                :key="error.$uid">
-                                <div class="invalid-feedback">{{ error.$message }}</div>
+                            <input
+                                type="password" class="form-control" id="passwordConfirmInput"
+                                placeholder="******"
+                                v-model="v$.newUser.passwordConfirm.$model"
+                            >
+                            <div class="validationMessages">
+                                <span class="validationError"
+                                    v-show="v$.newUser.passwordConfirm.required.$invalid && v$.newUser.passwordConfirm.$dirty">
+                                    Enter the password confirmation
+                                </span>
+                                <span class="validationError"
+                                    v-show="v$.newUser.passwordConfirm.sameAsPassword.$invalid && v$.newUser.passwordConfirm.$dirty">
+                                    The passwords don't match
+                                </span>
                             </div>
                         </div>
                         <div class="buttonsContainer">
@@ -70,9 +120,11 @@
 </template>
 
 <script>
-import { useApiService } from '../services/apiService';
 import { useVuelidate } from '@vuelidate/core';
-import { required, email, sameAs } from '@vuelidate/validators';
+import { required, email, sameAs, minLength } from '@vuelidate/validators';
+
+import { useApiService } from '../services/apiService';
+import { useUserStore } from '../store/user';
 
 export default {
     data() {
@@ -93,7 +145,6 @@ export default {
     mounted() {
         this.apiService = useApiService();
         this.userStore = useUserStore();
-        console.log('v', this.v$.newUser);
     },
     computed: {
         isDisabled() {
@@ -128,8 +179,8 @@ export default {
                 name: { required },
                 lastName: { required },
                 phoneNumber: { required },
-                password: { required },
-                passwordConfirm: { required, sameAsPassword: sameAs('password') },
+                password: { required, minLength: minLength(6) },
+                passwordConfirm: { required, sameAsPassword: sameAs(this.newUser.password) },
             }
         }
     }
@@ -167,5 +218,18 @@ form {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+}
+
+.validationMessages {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-items: center
+}
+
+.validationError {
+    margin-top: 10px;
+    color: rgb(165, 35, 35);
+    font-size: 12px;
 }
 </style>

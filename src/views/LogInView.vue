@@ -3,12 +3,42 @@
     <h2>Access the App</h2>
     <form>
         <div class="mb-3">
-            <label for="emailInput" class="form-label">Email Address</label>
-            <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+            <!-- <label for="emailInput" class="form-label">Email Address</label> -->
+            <input
+                type="email" class="form-control" id="emailInput"
+                placeholder="name@example.com"
+                v-model.trim="v$.email.$model"
+            >
+            <div class="validationMessages">
+                <span
+                    class="validationError"
+                    v-show="v$.email.required.$invalid && v$.email.$dirty">
+                    Enter an email
+                </span>
+                <span
+                    class="validationError"
+                    v-show="v$.email.email.$invalid && v$.email.$dirty">
+                    Enter a valid email
+                </span>
+            </div>
         </div>
         <div class="mb-3">
             <label for="passwordInput" class="form-label">Password</label>
-            <input type="password" class="form-control" id="passwordInput" placeholder="******">
+            <input
+                type="password" class="form-control" id="passwordInput"
+                placeholder="******"
+                v-model="v$.password.$model"
+                >
+            <div class="validationMessages">
+                <span class="validationError"
+                    v-show="v$.password.required.$invalid && v$.password.$dirty">
+                    Enter a password
+                </span>
+                <span class="validationError"
+                    v-show="v$.password.minLength.$invalid && v$.password.$dirty">
+                    Enter a password with a minimum of 6 characters
+                </span>
+            </div>
         </div>
         <div class="buttonsContainer">
             <button type="button" class="btn btn-secondary" @click="login">
@@ -23,9 +53,13 @@
 </template>
 
 <script>
+import { useVuelidate } from '@vuelidate/core';
+import { required, email, sameAs, minLength } from '@vuelidate/validators';
+
 export default {
     data() {
         return {
+            v$: useVuelidate(),
             email: '',
             password: '',
         }
@@ -38,6 +72,12 @@ export default {
         register(){
             this.$router.push('/register')
         },
+    },
+    validations() {
+        return {
+            email: { required, email },
+            password: { required, minLength: minLength(6) },
+        }
     }
 }
 </script>
@@ -73,5 +113,18 @@ form {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+}
+
+.validationMessages {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-items: center
+}
+
+.validationError {
+    margin-top: 10px;
+    color: rgb(165, 35, 35);
+    font-size: 12px;
 }
 </style>
