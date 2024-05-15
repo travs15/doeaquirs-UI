@@ -5,6 +5,11 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  css: {
+    preprocessorOptions: {
+      scss: { additionalData: `@import "src/styles/global.scss";` }
+    }
+  },
   server: {
     port: 8080,
     hot: true
@@ -36,5 +41,5 @@ export default defineConfig({
             }
         },
     },
-  },
+  }
 })
