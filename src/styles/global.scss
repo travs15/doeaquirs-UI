@@ -23,7 +23,7 @@ a {
     text-decoration: none;
 }
 
-.highligh-text {
+.highlight-text {
     font-weight: 500;
 }
 
@@ -65,4 +65,18 @@ a {
     border-radius: 0 0 20px 20px;
     height: 3rem;
     line-height: 40px;
+}
+
+.back-bar {
+    a {
+        color: $text-color;
+
+    }
+
+    i {
+        font-size: 0.8rem;
+        margin-right: 6px;
+    }
+    margin-left: 20px;
+    margin-bottom: 1rem;
 }

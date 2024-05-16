@@ -38,7 +38,7 @@
     <div class="create-trip-panel call">
         <p  class="call">Você é um motorista indo pro RS e deseja oferecer sua viagem para que mais pessoas possam enviar suas doações através de você?</p>
         <div class="btn-container">
-            <RouterLink class="btn btn-primary" to="/viagens">Oferecer viagem solidária</RouterLink>
+            <RouterLink class="btn btn-primary" to="/viagens/oferecer">Oferecer viagem solidária</RouterLink>
         </div>
         
     </div>

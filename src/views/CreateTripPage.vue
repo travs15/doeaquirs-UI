@@ -171,6 +171,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.back-bar {
+    a {
+        color: $text-color;
+        
+    }
+    i {
+        font-size: 0.8rem;
+        margin-right: 6px;
+    }
+    margin-bottom: 1rem;
+}
 
 .warn-donations {
     font-weight: 400;

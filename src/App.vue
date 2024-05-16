@@ -152,15 +152,17 @@ footer p {
     }
     li {
       margin-left: 0;
+      
     }
 
     .a-bottom {
       flex-direction: column !important;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       font-weight: 300;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: $text-color;
+      height: 3.2rem;
     }
 
     .ul-bottom {

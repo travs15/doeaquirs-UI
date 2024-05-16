@@ -6,6 +6,8 @@ import LandingPage2 from '../views/LandingPage2.vue';
 import DonationForm from '../views/DonationForm.vue';
 import DriveForm from '../views/DriveForm.vue';
 import TripsPage from '../views/TripsPage.vue';
+import TripDetailsPage from '../views/TripDetailsPage.vue';
+import CreateTripPage from '../views/CreateTripPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -48,6 +50,22 @@ const routes: Array<RouteRecordRaw> = [
     path: '/drive',
     name: 'drive',
     component: DriveForm,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/viagens/:id',
+    name: 'tripDetails',
+    component: TripDetailsPage,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/viagens/oferecer',
+    name: 'createTrip',
+    component: CreateTripPage,
     meta: {
       requiresAuth: true
     }
