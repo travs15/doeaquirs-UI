@@ -1,22 +1,5 @@
 <template>
-    <div class="registerDriveFormContainer">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Doeaquirs!</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" @click="handleGoBack">Go-Back</a>
-                        </li>
-                    </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
+    <div class="registerTripFormContainer">
         <div class="formSection">
             <h2>Register a Drive</h2>
             <form>
@@ -140,7 +123,7 @@ export default {
 
 <style scoped>
 /* Your light theme styles */
-.registerDriveFormContainer {
+.registerTripFormContainer {
     display: flex;
     flex-direction: column;
     align-items: center;

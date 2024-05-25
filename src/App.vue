@@ -5,21 +5,6 @@ import { RouterLink } from 'vue-router';
 
 <template>
   <div>
-    <!-- <header>
-      <div class="container">
-        <nav class="nav-header">
-          <div>
-            <img class="logo" src="@/assets/love.png" />
-            <a href="/" class="name">doeaquirs</a>
-          </div>
-        
-          <ul>
-            <li><a href="/">Cadastro</a></li>
-            <li><a href="/">Login</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header> -->
     <main>
       <div class="container">
         <router-view />
@@ -31,14 +16,6 @@ import { RouterLink } from 'vue-router';
         <p>Serviço sem fins lucrativos, desenvolvido por voluntários.</p>
       </div>
     </footer>
-    <!-- <nav class="menu-bottom">
-      <ul class="ul-bottom">
-        <li><a href="/" class="a-bottom"><i class="pi pi-bell"></i>Notificações</a></li>
-        <li><a href="/" class="a-bottom"><i class="pi pi-truck"></i>Minhas viagens</a></li>
-        <li><a href="/" class="a-bottom"><i class="pi pi-gift"></i>Minhas doações</a></li>
-        <li><a href="/" class="a-bottom"><i class="pi pi-user"></i>Meu perfil</a></li>
-      </ul>
-    </nav> -->
   </div>
     
 </template>
@@ -176,9 +153,6 @@ footer p {
     i {
       font-size: 1.5rem;
     }
-  
-
-  
 }
 
 /* Header */
