@@ -2,51 +2,53 @@
   <div class="authFormContainer">
     <h2>Access the App</h2>
     <form>
-        <div class="mb-3">
-            <!-- <label for="emailInput" class="form-label">Email Address</label> -->
-            <input
-                type="email" class="form-control" id="emailInput"
-                placeholder="name@example.com"
-                v-model.trim="v$.email.$model"
-            >
-            <div class="validationMessages">
-                <span
-                    class="validationError"
-                    v-show="v$.email.required.$invalid && v$.email.$dirty">
-                    Enter an email
-                </span>
-                <span
-                    class="validationError"
-                    v-show="v$.email.email.$invalid && v$.email.$dirty">
-                    Enter a valid email
-                </span>
+        <div class="logIn">
+            <div class="logIn-box">
+                <div class="logIn-line">
+                    <div class="logIn-line-label">Email</div>
+                    <div class="logIn-line-input">
+                        <input type="text" v-model.trim="v$.email.$model" placeholder="Digite sua email">
+                    </div>
+                </div>
+                <div class="logIn-validationMessages">
+                    <span
+                        class="logIn-validationError"
+                        v-show="v$.email.required.$invalid && v$.email.$dirty">
+                        Enter an email
+                    </span>
+                    <span
+                        class="logIn-validationError"
+                        v-show="v$.email.email.$invalid && v$.email.$dirty">
+                        Enter a valid email
+                    </span>
+                </div>
+                <div class="logIn-line">
+                    <div class="logIn-line-label">Password</div>
+                    <div class="logIn-line-input">
+                        <input type="password" v-model="v$.password.$model" placeholder="Digite sua password">
+                    </div>
+                </div>
+                <div class="logIn-validationMessages">
+                    <span class="logIn-validationError"
+                        v-show="v$.password.required.$invalid && v$.password.$dirty">
+                        Enter a password
+                    </span>
+                    <span class="logIn-validationError"
+                        v-show="v$.password.minLength.$invalid && v$.password.$dirty">
+                        Enter a password with a minimum of 6 characters
+                    </span>
+                </div>
             </div>
         </div>
-        <div class="mb-3">
-            <label for="passwordInput" class="form-label">Password</label>
-            <input
-                type="password" class="form-control" id="passwordInput"
-                placeholder="******"
-                v-model="v$.password.$model"
-                >
-            <div class="validationMessages">
-                <span class="validationError"
-                    v-show="v$.password.required.$invalid && v$.password.$dirty">
-                    Enter a password
-                </span>
-                <span class="validationError"
-                    v-show="v$.password.minLength.$invalid && v$.password.$dirty">
-                    Enter a password with a minimum of 6 characters
-                </span>
-            </div>
-        </div>
-        <div class="buttonsContainer">
-            <button type="button" class="btn btn-secondary" @click="login">
+        <div class="btn-container">
+            <div class="btn btn-primary" @click="login">
                 Log-In
-            </button type="button">
-            <button type="button" class="btn btn-secondary" @click="register">
+            </div>
+        </div>
+        <div class="btn-container">
+            <div class="btn btn-primary" @click="register">
                 Register
-            </button type="button">
+            </div>
         </div>
     </form>
   </div>
@@ -82,7 +84,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 /* Your light theme styles */
 .authFormContainer {
     display: flex;
@@ -94,37 +96,96 @@ export default {
 }
 
 form {
-    border: 0.5px solid #ccc;
-    border-radius: .5em;
+    background-color: $highlight-background;
+    box-shadow: $shadow;
+    border-radius: 20px;
+    border: $box-border;
     width: 40%;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
     margin: 1em;
     padding: 1em;
 }
 
-.button {
-    margin: 0.5em;
-    font-weight: 900;
-    width: 40%;
+.btn-container {
+    padding: 0.3em;
 }
 
-.buttonsContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-}
+.logIn {
+    margin-bottom: 1rem;
 
-.validationMessages {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-items: center
-}
+    .logIn-box {
+        background-color: $highlight-background;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-.validationError {
-    margin-top: 10px;
-    color: rgb(165, 35, 35);
-    font-size: 12px;
+    .logIn-box input[type=text],
+    .logIn-box input[type=password],
+    .logIn-box select {
+        background-color: #FFFFFF;
+        border: 0px;
+        color: $text-color;
+
+        &:focus {
+        outline: none;
+        }
+    }
+
+    .logIn-line {
+        height: 3rem;
+        border-bottom: $box-border;
+        margin-left: 20px;
+        margin-right: 20px;
+        display: grid;
+        grid-template-columns: 90px auto;
+
+        &:last-of-type {
+            border-bottom: 0px;
+        }
+    }
+
+    .logIn-line-label {
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+    }
+
+    .logIn-line-input {
+        display: flex;
+        align-items: center;
+
+        input[type=text] {
+            padding-left: 4px;
+        }
+
+        input[type=text],
+        select {
+            width: 100%;
+            height: 100%;
+            font-size: 1rem;
+            border-radius: 0;
+            font-family: "Red Hat Display", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+        
+        }
+
+        input[type=date] {
+            text-align: left;
+        }
+    }
+
+    .logIn-validationMessages {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-items: flex-end;
+    }
+
+    .logIn-validationError {
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 10px;
+        color: rgb(165, 35, 35);
+        font-size: 12px;
+    }
 }
 </style>

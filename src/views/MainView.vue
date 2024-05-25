@@ -5,7 +5,7 @@ import { RouterLink } from 'vue-router';
 
 <template>
   <div>
-    <!-- <header>
+    <header>
       <div class="container">
         <nav class="nav-header">
           <div>
@@ -19,7 +19,7 @@ import { RouterLink } from 'vue-router';
           </ul>
         </nav>
       </div>
-    </header> -->
+    </header>
     <main>
       <div class="container">
         <router-view />
@@ -31,14 +31,14 @@ import { RouterLink } from 'vue-router';
         <p>Serviço sem fins lucrativos, desenvolvido por voluntários.</p>
       </div>
     </footer>
-    <!-- <nav class="menu-bottom">
+    <nav class="menu-bottom">
       <ul class="ul-bottom">
         <li><a href="/" class="a-bottom"><i class="pi pi-bell"></i>Notificações</a></li>
         <li><a href="/" class="a-bottom"><i class="pi pi-truck"></i>Minhas viagens</a></li>
         <li><a href="/" class="a-bottom"><i class="pi pi-gift"></i>Minhas doações</a></li>
         <li><a href="/" class="a-bottom"><i class="pi pi-user"></i>Meu perfil</a></li>
       </ul>
-    </nav> -->
+    </nav>
   </div>
     
 </template>

@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import LogInView from '../views/LogInView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import HomeView from '../views/HomeView.vue';
-import LandingPage2 from '../views/LandingPage2.vue';
+import LandingPage from '../views/LandingPage.vue';
 import DonationForm from '../views/DonationForm.vue';
 import DriveForm from '../views/DriveForm.vue';
 import TripsPage from '../views/TripsPage.vue';
@@ -13,7 +13,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'landing',
-    component: LandingPage2,
+    component: LandingPage,
   },
   {
     path: '/viagens',

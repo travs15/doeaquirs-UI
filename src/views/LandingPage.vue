@@ -1,89 +1,123 @@
 <template>
-    <div class="landingContainer">
-        <div class="landingStart">
-            <div class="navBarContainer">
-            </div>
-            <div class="startImgContainer">
-                <!-- <img :src="imgUrl" alt=""> -->
-            </div>
+    <header>
+      <div class="container">
+        <nav class="nav-header">
+          <div>
+            <img class="logo" src="@/assets/love.png" />
+            <a href="/" class="name">doeaquirs</a>
+          </div>
+        
+          <ul>
+            <li><a href="#" @click="register">Cadastro</a></li>
+            <li><a href="#" @click="login">Login</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div>
+        <div class="hero">
+            <p>Todos juntos enviando doações ao Rio Grande do Sul!</p>
         </div>
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Doe Aqui RS!</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" @click="login">Log-in</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" @click="register">Register</a>
-                        </li>
-                    </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <div class="landingAboutContainer">
-            <h1>Welcome!</h1>
-            <h3>Thanks for beign here whiling to help each other</h3>
-            <div class="landingAboutContent">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                            <button type="button" class="btn btn-primary" @click="handlePostRide"><h4>Post a Ride</h4></button>
-                            <h4 class="aboutSection">
-                                This app will let you post your rides in order to transport food, clothes, supplies, donations... everything the people will need to help get us through this though time.
-                            </h4>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                            <button type="button" class="btn btn-success" @click="handlePostDonation"><h4>Post a Donation</h4></button>
-                            <h4 class="aboutSection">
-                                If you have donations we could help you contacting the drive that will be available to carry the supplies that you donate and help the ones in need!
-                            </h4>
-                        </div>
-                    </div>
+    </div>
+    <div class="call">
+        <p>Procure viagens solidárias em direção ao Rio Grande do Sul e envie sua doação através de motoristas solidários.</p> 
+    </div>
+    <div class="search">
+        <div class="search-box">
+            <div class="search-line">
+                <div class="search-line-label">De</div>
+                <div class="search-line-input">
+                    <input type="text" v-model="cityOrState" placeholder="Digite sua cidade ou estado">
                 </div>
             </div>
-            <div class="landingAboutContentInverse">
-                <h2>Useful things!</h2>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                            <h4 class="aboutSection">
-                                <ul>
-                                    <li>Tents, mattresses, and blankets.</li>
-                                    <li>Medicines and bottled water.</li>
-                                    <li>Hygiene kits and cleaning supplies. </li>
-                                </ul>
-                            </h4>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                            <h4 class="aboutSection">
-                                <ul>
-                                    <li>Non-perishable food items.</li>
-                                    <li>Clothing and footwear.</li>
-                                </ul>
-                            </h4>
-                        </div>
-                    </div>
+            <div class="search-line">
+                <div class="search-line-label">Transporte</div>
+                <div class="search-line-input">
+                    <select name="" id="" v-model="transportationType">
+                        <option value="">Todos os tipos</option>
+                        <option value="truck">Caminhão</option>
+                        <option value="car">Carro</option>
+                        <option value="bus">Ônibus</option>
+                        <option value="van">Van/Micro-ônibus</option>
+                    </select>
                 </div>
             </div>
+            <div class="search-line">
+                <div class="search-line-label">A partir de</div>
+                <div class="search-line-input"><input type="date" value="" v-model="date"></div>
+
+            </div>
+            <div class="btn btn-primary btn-search" @click="handleSearchTrip">Pesquisar viagens solidárias</div>
         </div>
-        <div class="featuresContainer">
+    </div>
+    <div class="create-trip-panel call">
+        <p  class="call">Você é um motorista indo pro RS e deseja oferecer sua viagem para que mais pessoas possam enviar suas doações através de você?</p>
+        <div class="btn-container">
+            <div class="btn btn-primary" @click="handlePostDonation">Oferecer viagem solidária</div>
+        </div>
+    </div>
+    <div>
+        <div class="faq-question">
+            <h2>Como funciona?</h2>
+            <p>
+                Motoristas partindo em direção ao Rio Grande do Sul publicam suas viagens aqui no <strong>doeaquirs.org</strong>, 
+                com os detalhes de local e horário da partida e pontos de parada. Doadores interessados em enviar ao estado suas 
+                doações pesquisam por viagens cadastradas e através da plataforma podem registrar sua intenção de envio de doações 
+                na viagem desejada, possibilitando assim um meio de contato entre motoristas e doadores.
+            </p>
+        </div>
+        <div class="faq-question">
+            <h2>Quero enviar minha doação</h2>
+            <p>
+                Pesquise por viagens indicando sua cidade, tipo de transporte procurado e data inicial para pesquisa. Escolha o 
+                motorista desejado e cadastre os itens que deseja doar. O motorista entrará em contato com você para combinarem a 
+                coleta de suau doação.
+            </p>
+        </div>
+        <div class="faq-question">
+            <h2>Quero oferecer uma viagem</h2>
+            <p>
+                Pesquise por viagens indicando sua cidade, tipo de transporte procurado e data inicial para pesquisa. Escolha o 
+                motorista desejado e cadastre os itens que deseja doar. O motorista entrará em contato com você para combinarem 
+                a coleta de suau doação.
+            </p>
+        </div>
+        <div class="faq-question">
+            <h2>É seguro?</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ullamcorper dapibus lorem a vestibulum. Nullam 
+                quis ligula vitae felis posuere semper sed nec nunc. Maecenas eget neque vel leo pretium commodo non sed lectus. 
+                Fusce est sapien, aliquet nec massa non, tincidunt congue nunc. Lorem ipsum dolor sit amet, consectetur 
+                adipiscing elit. Cras ullamcorper dapibus lorem a vestibulum. Nullam quis ligula vitae felis posuere semper sed 
+                nec nunc. Maecenas eget neque vel leo pretium commodo non sed lectus. Fusce est sapien, aliquet nec massa non, 
+                tincidunt congue nunc. 
+            </p>
+        </div>
+        <div class="faq-question">
+            <h2>Preciso pagar alguma coisa?</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ullamcorper dapibus lorem a vestibulum. Nullam 
+                quis ligula vitae felis posuere semper sed nec nunc. Maecenas eget neque vel leo pretium commodo non sed lectus. 
+                Fusce est sapien, aliquet nec massa non, tincidunt congue nunc. Lorem ipsum dolor sit amet, consectetur 
+                adipiscing elit. Cras ullamcorper dapibus lorem a vestibulum. Nullam quis ligula vitae felis posuere semper sed 
+                nec nunc. Maecenas eget neque vel leo pretium commodo non sed lectus. Fusce est sapien, aliquet nec massa non, 
+                tincidunt congue nunc. 
+            </p>
         </div>
     </div>
 </template>
 
 <script>
+import { useVuelidate } from '@vuelidate/core';
+import { required } from '@vuelidate/validators';
+
 export default {
     data() {
         return {
-            // email: '',
-            // password: '',
+            v$: useVuelidate(),
+            cityOrState: null,
+            transportationType: null,
+            date: null,
         }
     },
     methods: {
@@ -93,148 +127,141 @@ export default {
         register(){
             this.$router.push('/register')
         },
-        handlePostRide() {
-            this.$router.push('/login')
+        handleSearchTrip() {
+            if(!this.v$.$invalid) {
+                this.$router.push('/viagens')
+            }
         },
         handlePostDonation() {
-            this.$router.push('/login')
+            this.$router.push('/viagens/oferecer')
         }
     },
+    validations() {
+        return {
+            cityOrState: {required},
+            transportationType: {required},
+            date: {required},
+        }
+    }
 }
 </script>
 
-<style scoped>
-.landingContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    height: 100vh;
-    color: #575757;
+<style lang="scss" scoped>
+
+header {
+    margin-bottom: 2em;
 }
 
-/* first part of the content */
-
-v-container {
-    padding: 0 !important;
-}
-
-.landingStart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    background-color: #D9E2E1;
-}
-
-.navBarContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 80%;
-    background-color: #5C3A8E;
-}
-
-.title {
-    font-weight: 900;
-    padding: 0.4em;
-    color: #F8B548;
-}
-
-.newsButton {
-    margin-top: 1em;
-}
-
-.insideButtons {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    border-radius: 0% 0% 100% 100%;
-    background-color: white;
-    color: black;
-}
-
-.insideButton{
-    cursor: pointer;
-    font-weight: 700;
-}
-.insideButton:hover{
-    color: #F8B548;
-    font-weight: 900;
-}
-
-.startImgContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 80%;
-    background-color: #5C3A8E;
-    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px; */
-}
-
-.startImgContainer img {
-    width: 100%;
-}
-
-/* about content */
-.landingAboutContainer {
-    margin-top: 3em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-}
-
-.landingAboutContent {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 80%;
-    background-color: white;
-    border-radius: 3em;
-    padding: 3em;
-    color: black;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+.hero {
     text-align: center;
+    p {
+        font-family: 'Salsa';
+        font-size: 1.25rem;
+        text-align: center;
+    }
+    img {
+        height: 60px;
+    }
+    margin-bottom: 2rem;
 }
 
-.aboutSection {
-    padding: 1em;
+.call {
+    p {
+        text-align: center;
+    }
+    margin-bottom: 1rem;
 }
 
-.landingAboutContentInverse {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 90%;
-    background-color: white;
-    border-radius: 3em;
-    padding: 6em;
-    margin: 1em;
-    color: black;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-    text-align: center;
+.search {
+    margin-bottom: 2rem;
+
+    .search-box {
+        background-color: $highlight-background;
+        box-shadow: $shadow;
+        border-radius: 20px;
+        border: $box-border;
+        min-width: 320px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    .search-box input[type=text],
+    .search-box input[type=date],
+    .search-box select {
+        background-color: #FFFFFF;
+        border: 0px;
+        color: $text-color;
+
+        &:focus {
+        outline: none;
+        }
+    }
+
+    .search-line {
+        height: 3rem;
+        border-bottom: $box-border;
+        margin-left: 20px;
+        margin-right: 20px;
+        display: grid;
+        grid-template-columns: 90px auto;
+
+        &:last-of-type {
+            border-bottom: 0px;
+        }
+    }
+
+    .search-line-label {
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+    }
+
+    .search-line-input {
+        display: flex;
+        align-items: center;
+
+        input[type=text] {
+            padding-left: 4px;
+        }
+
+        input[type=text],
+        input[type=date],
+        select {
+            width: 100%;
+            height: 100%;
+            font-size: 1rem;
+            border-radius: 0;
+            font-family: "Red Hat Display", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+        
+        }
+
+        input[type=date] {
+            text-align: left;
+        }
+    }
 }
 
-/* features container */
-.featuresContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    margin-top: 4em;
+.create-trip-panel {
+    margin-bottom: 1.25rem;
+
+    .btn-container {
+        margin: 0 auto;
+        max-width: 600px;
+    }
+
 }
 
-.container {
-    margin: 0 !important;
+.faq-question {
+    margin-bottom: 0px;
+    padding: 1rem;
+
+    h2 {
+        font-family: 'Salsa';
+        margin-bottom: 0.8rem;
+        font-size: 1.25rem;
+    }
 }
 </style>
